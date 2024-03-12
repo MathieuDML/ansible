@@ -29,5 +29,5 @@
         create: yes
         validate: 'visudo -cf %s'
 
-- name: Execute SSH test playbook
+- name: Execute SSH check playbook
   import_playbook: check_ssh.yml
