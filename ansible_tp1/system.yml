@@ -2,7 +2,6 @@
   hosts: all
   become: true
   gather_facts: true
-  remote_user: ubuntu
   vars:
     username: esiee
     userpass: esiee
