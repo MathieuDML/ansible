@@ -26,4 +26,8 @@ jobs:
         pip install ansible
 
     - name: Run Ansible Playbook
-      run: ansible-playbook ansible_tp1/system.yml -i ansible_tp1/hosts.yml
+      run: echo ${{ secrets.SUDO_PASSWORD }} | ansible-playbook ansible_tp1/system.yml -i ansible_tp1/hosts.yml --ask-become-pass
+      env:
+        ANSIBLE_BECOME_METHOD: sudo
+        ANSIBLE_BECOME: true
+        ANSIBLE_BECOME_USER: root
