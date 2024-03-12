@@ -19,7 +19,7 @@
       ansible.builtin.authorized_key:
         user: "{{ username }}"
         state: present
-        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+        key: "{{ lookup('file', 'key/mathieu_id_rsa.pub') }}"
 
     - name: Add user to sudoers
       ansible.builtin.lineinfile:
