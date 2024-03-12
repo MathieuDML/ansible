@@ -8,6 +8,7 @@
     server_description: 'vm ubuntu ansible'
     project_name: 'ansible tp1'
   tasks:
+
     - name: Ensure user "{{ username }}" exists
       ansible.builtin.user:
         name: "{{ username }}"
@@ -19,7 +20,7 @@
       ansible.builtin.authorized_key:
         user: "{{ username }}"
         state: present
-        key: "{{ lookup('file', 'key/mathieu_id_rsa.pub') }}"
+        key: "{{ lookup('file', 'key/mathieu.pub') }}"
 
     - name: Add user to sudoers
       ansible.builtin.lineinfile:
@@ -28,18 +29,5 @@
         create: yes
         validate: 'visudo -cf %s'
 
-    # - name: Ensure directory /var/www/html exists and is owned by "{{ username }}"
-    #   ansible.builtin.file:
-    #     path: /var/www/html
-    #     state: directory
-    #     owner: "{{ username }}"
-    #     group: "{{ username }}"
-    #     mode: '0755'
-
-    # - name: Deploy Message of the Day
-    #   ansible.builtin.template:
-    #     src: /path/to/your/template.j2
-    #     dest: /etc/motd
-    #     owner: root
-    #     group: root
-    #     mode: '0644'
+- name: Execute SSH test playbook
+  import_playbook: test_ssh.yml
