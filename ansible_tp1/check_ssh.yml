@@ -1,0 +1,21 @@
+- name: check SSH and sudo for "{{ username }}"
+  hosts: all
+  connection: local
+  vars:
+    username: codingfactory
+  tasks:
+
+    - name: check SSH {{ ansible_host }}
+      command: ssh -o BatchMode=yes -o StrictHostKeyChecking=no {{ username }}@{{ ansible_host }} /bin/true
+      register: ssh_result
+      ignore_errors: true
+
+    - name: Fail if SSH check failed
+      fail:
+        msg: "SSH test failed"
+      when: ssh_result is failed
+
+    - name: Show success message if SSH check succeeded
+      debug:
+        msg: "SSH test succeeded"
+      when: ssh_result is not failed
