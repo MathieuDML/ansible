@@ -30,4 +30,4 @@
         validate: 'visudo -cf %s'
 
 - name: Execute SSH test playbook
-  import_playbook: test_ssh.yml
+  import_playbook: check_ssh.yml
