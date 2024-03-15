@@ -37,5 +37,8 @@
         group: root
         mode: '0644'
 
-#- name: Execute SSH check playbook
-#  import_playbook: check_ssh.yml
+    - name: Execute MariaDB installation playbook
+      include_tasks: db.yml
+
+#    - name: Execute SSH check playbook
+#      import_playbook: check_ssh.yml
